@@ -1,0 +1,85 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // --- 1. 通用脚本调试 ---
+        {
+            "name": "Python: 当前文件 (常用)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: 进阶调试 (追踪库源码)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: 命令行参数调试",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "--input",
+                "test.txt",
+                "--mode",
+                "fast"
+            ],
+            "justMyCode": true
+        },
+        // --- 2. FastAPI 调试 ---
+        {
+            "name": "Python: FastAPI Web应用",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "main:app", // 如果你的入口文件名不是main.py，请修改这里
+                "--reload",
+                "--port",
+                "8000"
+            ],
+            "jinja": true,
+            "justMyCode": true
+        },
+        // --- 3. Django 调试 ---
+        {
+            "name": "Python: Django Web应用",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8000"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        // --- 4. Flask 调试 ---
+        {
+            "name": "Python: Flask Web应用",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "app.py", // 如果你的入口文件名不是app.py，请修改这里
+                "FLASK_DEBUG": "1"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload"
+            ],
+            "jinja": true,
+            "justMyCode": true
+        }
+    ]
+}

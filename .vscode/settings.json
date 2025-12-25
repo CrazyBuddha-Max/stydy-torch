@@ -1,0 +1,89 @@
+{
+    // --- Python 核心语言服务器配置 (Pylance) ---
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.packageIndexDepths": [
+        {
+            "name": "numpy",
+            "depth": 5
+        },
+        {
+            "name": "pandas",
+            "depth": 5
+        },
+        {
+            "name": "matplotlib",
+            "depth": 5
+        }
+    ],
+    // --- 视觉内联提示 (Inlay Hints) ---
+    "editor.inlayHints.enabled": "on",
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.callArgumentNames": "all",
+    //完全关闭悬浮窗（依赖内联提示）
+    "editor.parameterHints.enabled": false,
+    // --- 代码编辑与补全行为 ---
+    "python.analysis.completeFunctionParens": true,
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "on",
+    },
+    // 补全列表弹出后，按 Tab 或 Enter 都能直接填入
+    "editor.tabCompletion": "on",
+    // 控制是否在输入时自动弹出补全列表的详细说明
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    // 如果你输入了一半代码，按 . 符号会自动选择最匹配的项（非常 PyCharm 风格）
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    // 允许在补全代码时预览该函数/变量的定义文档
+    "editor.suggest.preview": true,
+    // 控制补全列表的显示延迟（默认 10ms，基本不用改，但如果觉得慢可以设为 0）
+    "editor.quickSuggestionsDelay": 0,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.suggestSelection": "first",
+    "python.analysis.indexing": true,
+    // --- Ruff 核心自动化配置 (代替 Black, isort, Flake8) ---
+    "editor.formatOnSave": true,
+    "[python]": {
+        // 设置 Ruff 为默认格式化程序（代替 Black）
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            // 保存时修复所有可修复的问题（代替 Flake8）
+            "source.fixAll.ruff": "explicit",
+            // 保存时自动整理导入语句（代替 isort）
+            "source.organizeImports.ruff": "explicit"
+        }
+    },
+    // 强制使用原生服务器以获得极致速度
+    "ruff.nativeServer": true,
+    // --- 路径与文件智能提示 ---
+    "path-intellisense.extensionOnImport": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.pythonProjects": [],
+    // --- Pylance 诊断级别优化 (保留你的 PyCharm 风格配置) ---
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportOptionalMemberAccess": "information",
+        "reportGeneralTypeIssues": "warning",
+        "reportArgumentType": "information",
+        "reportAttributeAccessIssue": "information",
+        "reportOperatorIssue": "warning",
+        "reportReturnType": "information",
+        "reportAny": "none",
+        "reportUnboundVariable": "warning"
+    },
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "cmake.configureSettings": {},
+    // 强制 Jupyter 使用 Pylance 的补全引擎（建议开启）
+    "notebook.formatOnSave.enabled": true,
+    "notebook.codeActionsOnSave": {
+        // 使用布尔值 true 来开启，这是目前报错提示中认可的有效值
+        "notebook.source.fixAll.ruff": "explicit",
+        "notebook.source.organizeImports.ruff": "explicit"
+    }
+}
