@@ -1,3 +1,3 @@
 import torch
 
-print()
+print("pytorch version: {}".format(torch.__version__))
